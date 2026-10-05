@@ -1,0 +1,705 @@
+:root {
+  color-scheme: dark;
+  font-family: "DM Sans", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  --cream: #fff7ed;
+  --muted: #aaa4bb;
+  --gold: #f6c77d;
+  --lavender: #c9b5ff;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  overflow-x: hidden;
+  background:
+    radial-gradient(ellipse at 65% 43%, rgba(77, 53, 111, 0.23), transparent 42%),
+    radial-gradient(ellipse at 22% 84%, rgba(103, 48, 77, 0.12), transparent 37%),
+    #100d24;
+  color: var(--cream);
+}
+
+button,
+a {
+  color: inherit;
+  font: inherit;
+}
+
+button:focus-visible,
+a:focus-visible,
+.canvas-wrap:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 5px;
+}
+
+.ambient-glow {
+  position: fixed;
+  z-index: -1;
+  width: 24rem;
+  height: 24rem;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.13;
+  pointer-events: none;
+}
+
+.ambient-glow--one {
+  top: -11rem;
+  right: 15%;
+  background: #a47bee;
+}
+
+.ambient-glow--two {
+  bottom: -15rem;
+  left: 9%;
+  background: #e99a77;
+}
+
+.grain {
+  position: fixed;
+  z-index: 4;
+  inset: 0;
+  opacity: 0.13;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.18'/%3E%3C/svg%3E");
+}
+
+.birthday-page {
+  display: flex;
+  flex-direction: column;
+  width: min(100% - 112px, 1320px);
+  min-height: 100svh;
+  margin-inline: auto;
+}
+
+.topbar,
+.page-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topbar {
+  min-height: 100px;
+  border-bottom: 1px solid rgba(255, 247, 237, 0.1);
+}
+
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  color: #ece4fa;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.19em;
+  text-decoration: none;
+}
+
+.wordmark__sparkle {
+  color: var(--gold);
+  font-size: 20px;
+}
+
+.topbar__date,
+.page-footer {
+  color: #aaa4bb;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+}
+
+.hero {
+  position: relative;
+  display: grid;
+  flex: 1;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  min-height: 590px;
+}
+
+.hero__copy {
+  z-index: 1;
+  padding-bottom: 22px;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin: 0 0 23px;
+  color: var(--gold);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.21em;
+}
+
+.eyebrow span,
+.stage-label span {
+  display: inline-block;
+  width: 23px;
+  height: 1px;
+  background: var(--gold);
+}
+
+h1 {
+  position: relative;
+  margin: 0;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: clamp(52px, 6.1vw, 86px);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 1.07;
+}
+
+h1 > span:first-of-type {
+  color: #d9c7ff;
+}
+
+.title-star {
+  display: inline-block;
+  margin-left: 11px;
+  color: var(--gold);
+  font-family: "DM Sans", sans-serif;
+  font-size: 24px;
+  vertical-align: top;
+}
+
+.hero__description {
+  margin: 27px 0 0;
+  color: #b8b2c6;
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.hero__hint {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 54px;
+  color: #e7ddf3;
+  font-size: 12px;
+}
+
+.hint-icon {
+  display: grid;
+  width: 31px;
+  height: 31px;
+  place-items: center;
+  border: 1px solid rgba(246, 199, 125, 0.42);
+  border-radius: 50%;
+  color: var(--gold);
+  font-size: 17px;
+}
+
+.gift-stage {
+  position: relative;
+  display: flex;
+  min-height: 520px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  isolation: isolate;
+}
+
+.stage-orbit {
+  position: absolute;
+  z-index: -1;
+  left: 50%;
+  top: 48%;
+  border: 1px solid rgba(209, 186, 255, 0.12);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) rotate(-19deg);
+  pointer-events: none;
+}
+
+.stage-orbit--outer {
+  width: min(37vw, 470px);
+  height: min(24vw, 305px);
+}
+
+.stage-orbit--inner {
+  width: min(31vw, 395px);
+  height: min(20vw, 255px);
+  border-color: rgba(209, 186, 255, 0.08);
+  transform: translate(-50%, -50%) rotate(22deg);
+}
+
+.stage-label {
+  position: absolute;
+  top: 39px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #c1b8d0;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.23em;
+}
+
+.stage-label span {
+  width: 15px;
+  background: rgba(246, 199, 125, 0.7);
+}
+
+.canvas-wrap {
+  position: relative;
+  width: min(100%, 490px);
+  height: 390px;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.canvas-wrap canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.canvas-fallback {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+}
+
+.fallback-box {
+  position: relative;
+  width: 156px;
+  height: 142px;
+  border: 1px solid rgba(255, 224, 186, 0.55);
+  border-radius: 13px;
+  background: linear-gradient(135deg, #f0b76f, #bd6a7b 70%, #815a9c);
+  box-shadow: 0 25px 80px rgba(226, 130, 130, 0.24);
+  animation: bob 3s ease-in-out infinite;
+}
+
+.fallback-ribbon {
+  position: absolute;
+  inset: 0 41%;
+  background: linear-gradient(90deg, #ffdfa0, #fff0c9, #e9b370);
+}
+
+.fallback-box::after {
+  position: absolute;
+  top: 39%;
+  left: -2%;
+  width: 104%;
+  height: 14px;
+  background: linear-gradient(180deg, #ffdfa0, #f4c17b);
+  content: "";
+}
+
+.fallback-bow {
+  position: absolute;
+  z-index: 1;
+  top: -44px;
+  left: 50%;
+  color: #ffdfa0;
+  font-size: 67px;
+  line-height: 1;
+  transform: translateX(-50%);
+}
+
+.open-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 27px;
+  margin-top: -3px;
+  padding: 13px 17px 13px 22px;
+  border: 1px solid rgba(246, 199, 125, 0.56);
+  border-radius: 999px;
+  background: rgba(255, 247, 237, 0.035);
+  color: #fff3dc;
+  cursor: pointer;
+  font-size: 12px;
+  transition: background 180ms ease, transform 180ms ease, border-color 180ms ease;
+}
+
+.open-button:hover {
+  transform: translateY(-2px);
+  border-color: var(--gold);
+  background: rgba(246, 199, 125, 0.12);
+}
+
+.open-button__arrow {
+  display: grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--gold);
+  color: #291a2c;
+  font-size: 15px;
+}
+
+.gift-caption {
+  margin: 17px 0 0;
+  color: #8b829d;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+}
+
+.gift-caption span {
+  margin-left: 5px;
+  color: var(--gold);
+}
+
+.side-note {
+  position: absolute;
+  top: 50%;
+  color: #81788f;
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  writing-mode: vertical-rl;
+}
+
+.side-note--left {
+  left: -39px;
+  transform: translateY(-50%) rotate(180deg);
+}
+
+.side-note--right {
+  right: -39px;
+  transform: translateY(-50%);
+}
+
+.page-footer {
+  min-height: 68px;
+  border-top: 1px solid rgba(255, 247, 237, 0.1);
+  font-size: 8px;
+  letter-spacing: 0.17em;
+}
+
+.footer-heart {
+  color: #df9aa2;
+  font-size: 13px;
+}
+
+.card-backdrop {
+  position: fixed;
+  z-index: 8;
+  inset: 0;
+  display: grid;
+  padding: 24px;
+  place-items: center;
+  background: rgba(8, 6, 19, 0.76);
+  opacity: 0;
+  pointer-events: none;
+  backdrop-filter: blur(0);
+  transition: opacity 350ms ease, backdrop-filter 350ms ease;
+}
+
+.card-backdrop.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  backdrop-filter: blur(9px);
+}
+
+.birthday-card {
+  position: relative;
+  width: min(100%, 510px);
+  max-height: min(88svh, 760px);
+  overflow-y: auto;
+  padding: 49px 57px 43px;
+  border: 1px solid rgba(222, 194, 255, 0.53);
+  border-radius: 4px;
+  background:
+    radial-gradient(ellipse at 50% -12%, rgba(216, 190, 255, 0.19), transparent 52%),
+    linear-gradient(150deg, #28213e, #1b172d 58%, #211a32);
+  box-shadow: 0 30px 120px rgba(6, 4, 15, 0.62), inset 0 0 0 7px rgba(255, 247, 237, 0.025);
+  opacity: 0;
+  transform: translateY(30px) scale(0.96);
+}
+
+.card-close {
+  position: absolute;
+  top: 15px;
+  right: 17px;
+  display: grid;
+  width: 33px;
+  height: 33px;
+  place-items: center;
+  border: 1px solid rgba(255, 247, 237, 0.19);
+  border-radius: 50%;
+  background: transparent;
+  color: #ded5ed;
+  cursor: pointer;
+  font-size: 22px;
+  line-height: 1;
+  transition: background 160ms ease;
+}
+
+.card-close:hover {
+  background: rgba(255, 247, 237, 0.1);
+}
+
+.card-decoration {
+  color: var(--gold);
+  font-size: 13px;
+  letter-spacing: 0.3em;
+  text-align: center;
+}
+
+.card-decoration--bottom {
+  margin-top: 32px;
+}
+
+.card-kicker {
+  margin: 21px 0 12px;
+  color: var(--gold);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.21em;
+  text-align: center;
+}
+
+.birthday-card h2 {
+  margin: 0;
+  color: #f8edff;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 37px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.card-divider {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin: 20px 0;
+  color: var(--gold);
+  font-size: 12px;
+}
+
+.card-divider::before,
+.card-divider::after {
+  height: 1px;
+  flex: 1;
+  background: rgba(246, 199, 125, 0.28);
+  content: "";
+}
+
+.card-message {
+  margin: 0;
+  color: #e3dcec;
+  font-size: 13px;
+  line-height: 1.9;
+  text-align: center;
+}
+
+.card-message--english {
+  margin-top: 15px;
+  color: #bfb7cd;
+}
+
+.card-wish {
+  margin: 24px 0 23px;
+  color: #f5ce91;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 19px;
+  text-align: center;
+}
+
+.card-wish span {
+  white-space: nowrap;
+}
+
+.card-signoff {
+  color: #beb5cd;
+  font-size: 11px;
+  line-height: 1.8;
+  text-align: center;
+}
+
+.card-signoff strong {
+  color: #eee5fb;
+  font-weight: 600;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-4deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(3deg);
+  }
+}
+
+@media (min-width: 1500px) {
+  .birthday-page {
+    width: min(100% - 160px, 1420px);
+  }
+
+  .hero {
+    min-height: 680px;
+  }
+
+  .canvas-wrap {
+    height: 450px;
+  }
+}
+
+@media (max-width: 850px) {
+  .birthday-page {
+    width: min(100% - 64px, 680px);
+  }
+
+  .hero {
+    grid-template-columns: 1fr 0.92fr;
+    min-height: 570px;
+  }
+
+  h1 {
+    font-size: clamp(48px, 7vw, 66px);
+  }
+
+  .gift-stage {
+    min-height: 460px;
+  }
+
+  .canvas-wrap {
+    height: 340px;
+  }
+
+  .side-note--left {
+    left: -22px;
+  }
+
+  .side-note--right {
+    right: -22px;
+  }
+}
+
+@media (max-width: 620px) {
+  .birthday-page {
+    width: min(100% - 40px, 440px);
+  }
+
+  .topbar {
+    min-height: 72px;
+  }
+
+  .topbar__date {
+    max-width: 112px;
+    font-size: 7px;
+    line-height: 1.6;
+    text-align: right;
+  }
+
+  .hero {
+    display: flex;
+    min-height: auto;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 58px 0 35px;
+  }
+
+  .hero__copy {
+    padding: 0 4px;
+  }
+
+  .eyebrow {
+    margin-bottom: 18px;
+    font-size: 8px;
+  }
+
+  h1 {
+    font-size: clamp(52px, 13vw, 69px);
+  }
+
+  .hero__description {
+    margin-top: 17px;
+    font-size: 12px;
+  }
+
+  .desktop-break {
+    display: none;
+  }
+
+  .hero__hint {
+    margin-top: 24px;
+    font-size: 11px;
+  }
+
+  .gift-stage {
+    min-height: 410px;
+    margin-top: 4px;
+  }
+
+  .stage-label {
+    top: 19px;
+  }
+
+  .canvas-wrap {
+    width: min(100%, 390px);
+    height: 310px;
+  }
+
+  .stage-orbit--outer {
+    width: min(88vw, 390px);
+    height: min(58vw, 255px);
+  }
+
+  .stage-orbit--inner {
+    width: min(72vw, 320px);
+    height: min(48vw, 210px);
+  }
+
+  .side-note {
+    display: none;
+  }
+
+  .page-footer {
+    min-height: 61px;
+    font-size: 6px;
+  }
+
+  .birthday-card {
+    padding: 43px 27px 34px;
+  }
+
+  .birthday-card h2 {
+    font-size: 31px;
+  }
+
+  .card-message {
+    font-size: 12px;
+  }
+
+  .card-wish {
+    font-size: 17px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

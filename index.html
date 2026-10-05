@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#100d24" />
+    <meta
+      name="description"
+      content="A little birthday surprise for Yogesh Sir, our brilliant Spoken English teacher."
+    />
+    <title>Happy Birthday, Yogesh Sir!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  </head>
+  <body>
+    <div class="ambient-glow ambient-glow--one" aria-hidden="true"></div>
+    <div class="ambient-glow ambient-glow--two" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+
+    <main class="birthday-page">
+      <header class="topbar">
+        <a class="wordmark" href="#" aria-label="A birthday surprise">
+          <span class="wordmark__sparkle">✳</span>
+          <span>A LITTLE SURPRISE</span>
+        </a>
+        <span class="topbar__date">MADE WITH LOVE, JUST FOR YOU</span>
+      </header>
+
+      <section class="hero" aria-labelledby="birthday-title">
+        <div class="hero__copy">
+          <p class="eyebrow"><span></span> TODAY IS ALL ABOUT YOU</p>
+          <h1 id="birthday-title">Happy Birthday,<br /><span>Yogesh Sir</span><span class="title-star">✦</span></h1>
+          <p class="hero__description">
+            To the teacher who makes every word count<br class="desktop-break" />
+            and every student believe in themselves.
+          </p>
+          <div class="hero__hint">
+            <span class="hint-icon" aria-hidden="true">↘</span>
+            <span>A little surprise is waiting for you</span>
+          </div>
+        </div>
+
+        <div class="gift-stage" id="gift-stage">
+          <div class="stage-orbit stage-orbit--outer" aria-hidden="true"></div>
+          <div class="stage-orbit stage-orbit--inner" aria-hidden="true"></div>
+          <div class="stage-label"><span></span> YOUR SURPRISE <span></span></div>
+          <div class="canvas-wrap" id="gift-canvas" role="button" tabindex="0" aria-label="Open your birthday gift">
+            <div class="canvas-fallback" aria-hidden="true">
+              <div class="fallback-box">
+                <div class="fallback-ribbon"></div>
+                <div class="fallback-bow">∞</div>
+              </div>
+            </div>
+          </div>
+          <button class="open-button" id="open-gift" type="button">
+            <span>Open your gift</span>
+            <span class="open-button__arrow" aria-hidden="true">↗</span>
+          </button>
+          <p class="gift-caption">GO ON, IT'S YOURS <span>✦</span></p>
+        </div>
+
+        <div class="side-note side-note--left" aria-hidden="true">A DAY AS SPECIAL AS YOU</div>
+        <div class="side-note side-note--right" aria-hidden="true">✳ &nbsp; 01 / 01</div>
+      </section>
+
+      <footer class="page-footer">
+        <span>WITH GRATITUDE &amp; LOTS OF CAKE</span>
+        <span class="footer-heart">♥</span>
+        <span>FROM YOUR STUDENTS</span>
+      </footer>
+    </main>
+
+    <div class="card-backdrop" id="card-backdrop" aria-hidden="true">
+      <article class="birthday-card" id="birthday-card" role="dialog" aria-modal="true" aria-labelledby="card-title">
+        <button class="card-close" id="close-card" type="button" aria-label="Close birthday card">×</button>
+        <div class="card-decoration card-decoration--top" aria-hidden="true">✦ &nbsp; ✳ &nbsp; ✦</div>
+        <p class="card-kicker">A NOTE FOR OUR FAVOURITE TEACHER</p>
+        <h2 id="card-title">Dear Yogesh Sir,</h2>
+        <div class="card-divider"><span>✦</span></div>
+        <p class="card-message">
+          Aap sirf English nahi sikhate, aap humein confidence ke saath apni baat kehna bhi sikhate hain.
+          Your patience, passion, and infectious energy make every class something to look forward to.
+        </p>
+        <p class="card-message card-message--english">
+          May your year be filled with happiness, good health, big dreams, and all the success you so
+          truly deserve. Keep inspiring us, one word at a time!
+        </p>
+        <p class="card-wish">Wishing you the happiest birthday! <span>🎂</span></p>
+        <div class="card-signoff">With love &amp; gratitude,<br /><strong>Enjoy Your Happy Day</strong></div>
+        <div class="card-decoration card-decoration--bottom" aria-hidden="true">✦ &nbsp; ✳ &nbsp; ✦</div>
+      </article>
+    </div>
+
+    <div class="sr-only" id="announcement" aria-live="polite"></div>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
